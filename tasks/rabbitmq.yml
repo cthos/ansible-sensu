@@ -11,7 +11,7 @@
   rabbitmq_vhost: name=/sensu state=present
 - name: Create rabbit sensu user
   rabbitmq_user: user=sensu password={{ sensu_password }}
-                 vhost=/
+                 vhost=/sensu
                  configure_priv=.*
                  read_priv=.*
                  write_priv=.*
