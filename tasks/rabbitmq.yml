@@ -1,0 +1,18 @@
+---
+- name: Update Apt
+  command: apt-get update
+- name: Install RabbitMQ
+  apt: name=rabbitmq-server state=present
+- name: Configure RabbitMQ
+  command: update-rc.d rabbitmq-server defaults
+- name: Start RabbitMQ
+  service: name=rabbitmq-server state=started
+- name: Create /sensu vhost
+  rabbitmq_vhost: name=/sensu state=present
+- name: Create rabbit sensu user
+  rabbitmq_user: user=sensu password={{ sensu_password }}
+                 vhost=/
+                 configure_priv=.*
+                 read_priv=.*
+                 write_priv=.*
+                 state=present

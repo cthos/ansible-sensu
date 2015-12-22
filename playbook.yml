@@ -1,0 +1,13 @@
+---
+- hosts: sensu
+  vars:
+    sensu_password: 'putyourpasswordhere'
+  roles:
+    - queeno.uchiwa
+  tasks:
+    - include: tasks/rabbitmq.yml
+    - include: tasks/redis.yml
+    - include: tasks/sensu.yml
+- hosts: clients
+  tasks:
+    - include: tasks/sensu_client.yml

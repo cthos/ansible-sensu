@@ -1,0 +1,5 @@
+[sensu]
+sensu.example.com
+
+[clients]
+sensu-client.example.com

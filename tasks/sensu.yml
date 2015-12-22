@@ -1,0 +1,11 @@
+---
+- name: Add Sensu GPG Key
+  apt_key: url=http://repositories.sensuapp.org/apt/pubkey.gpg state=present
+- name: Install Sensu Repository
+  apt_repository: repo='deb http://repositories.sensuapp.org/apt sensu main' state=present
+- name: Install Sensu
+  apt: name=sensu state=present update_cache=yes
+- name: Start Sensu Server
+  service: name=sensu-server state=started
+- name: Start Sensu API
+  service: name=sensu-api state=started
